@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: vectordb
+    env: docker
+    dockerfilePath: ./Dockerfile
+    plan: standard
+    disk:
+      name: pgdata
+      mountPath: /var/lib/postgresql/data
+      sizeGB: 10
+    envVars:
+      - key: POSTGRES_DB
+        value: mydatabase
+      - key: POSTGRES_USER
+        value: myuser
+      - key: POSTGRES_PASSWORD
+        sync: false
+    ports:
+      - port: 5432
